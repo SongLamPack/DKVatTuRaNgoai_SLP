@@ -26,7 +26,7 @@
           />
     </div>
     <!-- bảng chào mừng -->
-    <section id="pgdangky" class="hidden">
+    <section id="pgdangky" class="hiddenm">
       <h1
         id="tieudeform"
         class="tieude"
@@ -51,7 +51,10 @@
           <input id="idchucvu" class="done" type="text" placeholder="Chức vụ" style="width:235px" readonly></input>
         </div>
         <div style="padding-top:10px;">
-					<label for="idVT">Danh sách vật tư, tài sản:</label><br>
+          <label for="loaivt">Chủng loại :</label>
+          <input id="idhanghoa" class="nhaplieu" type="radio" name="loaivt" checked>Vật tư, hàng hóa</input>
+          <input id="idtaisan" class="nhaplieu" type="radio" name="loaivt">Tài sản, máy móc</input>
+          <br><label for="idVT">Danh sách :</label><br>
           <div class="dsvattu">
             <div style="display:flex">
               <input class = "soTT" style="width:18px;border: none" value="1/" readonly></input>
