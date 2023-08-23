@@ -41,7 +41,7 @@ label {
 
 input[type="radio"] {
   transform: scale(1.2); /* Kích thước dấu chấm tròn */
-  margin-right: 10px; /*Khoảng cách giữa dấu chấm tròn và văn bản*/
+  margin-right: 5px; /*Khoảng cách giữa dấu chấm tròn và văn bản*/
 }
 
 .mucdich div {
