@@ -20,6 +20,7 @@ const idphuongtien = document.getElementById("idphuongtien");
 const idghichu = document.getElementById("idghichu");
 const idquanly = document.getElementById("quanly");
 const idhanghoa = document.getElementById("idhanghoa");
+const iddiadiem = document.getElementById("iddiadiem");
 
 listItems.forEach((item) => {
   item.addEventListener("click", function () {
@@ -210,6 +211,7 @@ btnguidk.addEventListener("click", (e) => {
   const PhuongTien = idphuongtien.value;
   const GhiChu = idghichu.value;
   const QuanLy = idquanly.value;
+  const DiaDiem = iddiadiem.value;
   const LoaiHang = idthuong.check ? "Hàng hóa" : "Tài sản";
   if (MaNV === "") {
     alert("Vui lòng nhập mã nhân viên");
@@ -255,6 +257,7 @@ btnguidk.addEventListener("click", (e) => {
       MucDich,
       NguoiMang,
       PhuongTien,
+      DiaDiem,
       NgayThang,
       GioRa,
       GhiChu,
