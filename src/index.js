@@ -409,6 +409,9 @@ function render(listdata) {
       <br><input type="text" style="width:380px" readonly value="Phương tiện: ${
         data.PhuongTien
       }"></input>
+      <br><input type="text" style="width:380px" readonly value="Địa điểm đến: ${
+        data.DiaDiem
+      }"></input>
       <br><input type="text" style="width:380px" readonly value="Ghi chú: ${
         data.GhiChu
       }"></input>
