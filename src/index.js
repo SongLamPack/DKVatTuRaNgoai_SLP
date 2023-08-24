@@ -427,7 +427,7 @@ function render(listdata) {
       }" style="width:68%" type="text" readonly value="${data.TruongBP} [${
       data.TBPDuyet
     }]"></input>
-      <br><label>Phòng HCNS:</label>
+      <br><label>BP liên quan:</label>
       <input class="${
         data.NSDuyet === "Duyệt"
           ? "done"
