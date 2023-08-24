@@ -212,7 +212,7 @@ btnguidk.addEventListener("click", (e) => {
   const GhiChu = idghichu.value;
   const QuanLy = idquanly.value;
   const DiaDiem = iddiadiem.value;
-  const LoaiHang = idthuong.check ? "Hàng hóa" : "Tài sản";
+  const LoaiHang = idhanghoa.check ? "Hàng hóa" : "Tài sản";
   if (MaNV === "") {
     alert("Vui lòng nhập mã nhân viên");
     return;
