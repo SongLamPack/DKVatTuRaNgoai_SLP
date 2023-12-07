@@ -1,9 +1,11 @@
 const URL =
-  "https://script.google.com/macros/s/AKfycbxq5B5MW9DoAWxAJz8Puai6YaFJ3T-TSumbbEkQZf41wTEK9RZcHDlDAm6BPG97Jg/exec";
+  "https://script.google.com/macros/s/AKfycbyrsvRx0R_bcCAULq0j_kvzTfGTNzWVBgVrc0ixUQY1oxSsOseVKiLx7rlUtSfzI6KY/exec";
 const dsvattu = document.querySelector(".dsvattu");
 const btnThemVT = document.getElementById("btnAdd");
 const btnguidk = document.getElementById("btnguidk");
+const btnmangvao = document.getElementById("btnmangvao");
 const btnkiemtra = document.getElementById("btnkiemtra");
+const btnktravao = document.getElementById("btnktravao");
 const listItems = document.querySelectorAll(".menu li");
 const modal = document.getElementById("dangchay");
 var dsns = [];
@@ -49,16 +51,16 @@ listItems.forEach((item) => {
 function fetchDs() {
   if (dsns.length === 0) {
     let submitData = {
-      type: "dangky"
+      type: "dangky",
     };
     console.log("đang lấy danh sách nhân sự");
     modal.classList.add("display");
     fetch(URL, {
       method: "POST",
       headers: {
-        "Content-Type": "text/plain;charset=utf-8"
+        "Content-Type": "text/plain;charset=utf-8",
       },
-      body: JSON.stringify(submitData) // p data type must match "Content-Type" header
+      body: JSON.stringify(submitData), // p data type must match "Content-Type" header
     })
       .then((response) => {
         return response.json();
@@ -213,6 +215,7 @@ btnguidk.addEventListener("click", (e) => {
   const QuanLy = idquanly.value;
   const DiaDiem = iddiadiem.value;
   const LoaiHang = idhanghoa.checked ? "Hàng hóa" : "Tài sản";
+  console.log(LoaiHang);
   if (MaNV === "") {
     alert("Vui lòng nhập mã nhân viên");
     return;
@@ -243,7 +246,7 @@ btnguidk.addEventListener("click", (e) => {
   // }
   var ngaythang = NgayThang.split("-");
   var qs = confirm(
-    `XÁC NHẬN! \nGửi đăng ký mang vật tư, tài sản ra ngoài công ty ngày ${ngaythang[2]}/${ngaythang[1]}/${ngaythang[0]}`
+    `XÁC NHẬN! \nGửi đăng ký mang vật tư, tài sản RA NGOÀI công ty ngày ${ngaythang[2]}/${ngaythang[1]}/${ngaythang[0]}`
   );
   if (qs === true) {
     modal.classList.add("display");
@@ -262,16 +265,147 @@ btnguidk.addEventListener("click", (e) => {
       GioRa,
       GhiChu,
       QuanLy,
-      LoaiHang
+      LoaiHang,
     };
     const submitData = { type, data };
     console.log(submitData);
     fetch(URL, {
       method: "POST",
       headers: {
-        "Content-Type": "text/plain;charset=utf-8"
+        "Content-Type": "text/plain;charset=utf-8",
       },
-      body: JSON.stringify(submitData) // p data type must match "Content-Type" header
+      body: JSON.stringify(submitData), // p data type must match "Content-Type" header
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        if (data === true) {
+          alert(
+            "✅ Đăng ký thành công! Vui lòng liên hệ với quản lý để được xác nhận"
+          );
+        } else {
+          alert("❌ Đăng ký không thành công ⚠ Vui lòng thử lại");
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("❌ Đăng ký không thành công ⚠ Vui lòng thử lại");
+      });
+    modal.classList.remove("display");
+  }
+});
+
+btnmangvao.addEventListener("click", (e) => {
+  e.preventDefault();
+  var stt = document.querySelectorAll(".soTT");
+  var tenvattu = document.querySelectorAll(".tenvattu");
+  var dvt = document.querySelectorAll(".DVT");
+  var SoLuong = document.querySelectorAll(".SoLuong");
+  var dsdangky = [];
+  var checkinput = "true";
+  for (var i = 0; i < tenvattu.length; i++) {
+    var vattu = tenvattu[i].value;
+    var dv = dvt[i].value;
+    var slg = SoLuong[i].value;
+    var tt = stt[i].value;
+    if (vattu === "") {
+      tenvattu[i].classList.add("thieudl");
+      checkinput = "false";
+    } else {
+      tenvattu[i].classList.remove("thieudl");
+    }
+    if (dv === "") {
+      dvt[i].classList.add("thieudl");
+      checkinput = "false";
+    } else {
+      dvt[i].classList.remove("thieudl");
+    }
+    if (slg === "") {
+      SoLuong[i].classList.add("thieudl");
+      checkinput = "false";
+    } else {
+      SoLuong[i].classList.remove("thieudl");
+    }
+    dsdangky.push(`${tt} ${vattu}: ${slg} (${dv})`);
+  }
+  if (checkinput === "false") {
+    alert("Vui lòng nhập đầy đủ thông tin vật tư, tài sản");
+    return;
+  }
+  const MaNV = idnguoidk.value;
+  const HoTen = idhotendk.value;
+  const BoPhan = idbophan.value;
+  const ChucVu = idchucvu.value;
+  const NgayThang = idngaythang.value;
+  const GioRa = idgiora.value;
+  const MucDich = idmucdich.value;
+  const NguoiMang = idnguoimang.value;
+  const PhuongTien = idphuongtien.value;
+  const GhiChu = idghichu.value;
+  const QuanLy = idquanly.value;
+  const DiaDiem = iddiadiem.value;
+  const LoaiHang = idhanghoa.checked ? "Hàng hóa" : "Tài sản";
+  console.log(LoaiHang);
+  if (MaNV === "") {
+    alert("Vui lòng nhập mã nhân viên");
+    return;
+  }
+  if (HoTen === "" || HoTen === "không tìm thấy") {
+    alert("Mã nhân viên chưa đúng, vui lòng kiểm tra lại");
+    return;
+  }
+  if (NgayThang === "" || GioRa === "") {
+    alert("Vui lòng nhập đầy đủ ngày tháng, thời gian dự kiến");
+    return;
+  }
+  if (MucDich === "") {
+    alert("Vui lòng nhập mục đích mang vật tư, tài sản mang vào");
+    return;
+  }
+  if (QuanLy === "") {
+    alert("Vui lòng chọn quản lý xác nhận");
+    return;
+  }
+  if (NguoiMang === "") {
+    alert("Vui lòng nhập người mang vào");
+    return;
+  }
+  // if (PhuongTien === "") {
+  //   alert("Vui lòng nhập phương tiện sử dụng - biển số xe (nếu có)");
+  //   return;
+  // }
+  var ngaythang = NgayThang.split("-");
+  var qs = confirm(
+    `XÁC NHẬN! \nGửi đăng ký mang vật tư, tài sản VÀO trong công ty ngày ${ngaythang[2]}/${ngaythang[1]}/${ngaythang[0]}`
+  );
+  if (qs === true) {
+    modal.classList.add("display");
+    const type = "dangkyvattuvao";
+    const data = {
+      MaNV,
+      HoTen,
+      BoPhan,
+      ChucVu,
+      dsdangky,
+      MucDich,
+      NguoiMang,
+      PhuongTien,
+      DiaDiem,
+      NgayThang,
+      GioRa,
+      GhiChu,
+      QuanLy,
+      LoaiHang,
+    };
+    const submitData = { type, data };
+    console.log(submitData);
+    fetch(URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "text/plain;charset=utf-8",
+      },
+      body: JSON.stringify(submitData), // p data type must match "Content-Type" header
     })
       .then((response) => {
         return response.json();
@@ -312,16 +446,16 @@ btnkiemtra.addEventListener("click", (e) => {
 
   let submitData = {
     type: "check",
-    data: { name, idate }
+    data: { name, idate },
   };
   modal.classList.add("display");
   console.log(submitData);
   fetch(URL, {
     method: "POST",
     headers: {
-      "Content-Type": "text/plain;charset=utf-8"
+      "Content-Type": "text/plain;charset=utf-8",
     },
-    body: JSON.stringify(submitData) // p data type must match "Content-Type" header
+    body: JSON.stringify(submitData), // p data type must match "Content-Type" header
   })
     .then((response) => {
       return response.json();
@@ -329,7 +463,7 @@ btnkiemtra.addEventListener("click", (e) => {
     .then((data) => {
       console.log(data);
       modal.classList.remove("display");
-      render(data);
+      render(data, "DUYỆT");
     })
     .catch((error) => {
       console.error("Error:", error);
@@ -343,7 +477,51 @@ btnkiemtra.addEventListener("click", (e) => {
     });
 });
 
-function render(listdata) {
+btnktravao.addEventListener("click", (e) => {
+  e.preventDefault();
+  var resultEle = document.getElementById("result");
+  var name = idmatracuu.value;
+  var date = idngaytracuu.value;
+  var idate = parseInt(date.split("-").join(""));
+  if (name === "") {
+    alert("Vui lòng nhập mã nhân viên tra cứu");
+    return;
+  }
+
+  let submitData = {
+    type: "checkmangvao",
+    data: { name, idate },
+  };
+  modal.classList.add("display");
+  console.log(submitData);
+  fetch(URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "text/plain;charset=utf-8",
+    },
+    body: JSON.stringify(submitData), // p data type must match "Content-Type" header
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      console.log(data);
+      modal.classList.remove("display");
+      render(data, "XÁC NHẬN");
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      modal.classList.remove("display");
+      resultEle.innerHTML = `
+      <div class="koduyet" style="color:red">
+      <p>Không có kết quả nào phù hợp!</p>
+      </div>
+      `;
+      // alert("không có kết quả nào, hãy kiểm tra thông tin tra cứu và thử lại");
+    });
+});
+
+function render(listdata, typeData) {
   var resultEle = document.getElementById("result");
   var innerHtml = "";
   for (var i = 0; i < listdata.length; i++) {
@@ -356,10 +534,10 @@ function render(listdata) {
         data.KetQua === 1 ? "done" : data.KetQua === -1 ? "fal" : "wait"
       }">${
       data.KetQua === 1
-        ? "ĐƯỢC DUYỆT"
+        ? "ĐƯỢC " + typeData
         : data.KetQua === -1
-        ? "KHÔNG ĐƯỢC DUYỆT"
-        : "ĐANG CHỜ"
+        ? "KHÔNG ĐƯỢC " + typeData
+        : "ĐANG CHỜ " + typeData
     }</h2>
     </div>
     <div>
@@ -393,7 +571,7 @@ function render(listdata) {
         }"></input>
       </div>
       <div style="padding-left:15px;text-align:right">
-        <label>Giờ ra:</label>
+        <label>Giờ:</label>
         <input type="text" style="width:50px" readonly value="${
           data.GioRa
         }"></input>
@@ -408,9 +586,6 @@ function render(listdata) {
       }"></input>
       <br><input type="text" style="width:380px" readonly value="Phương tiện: ${
         data.PhuongTien
-      }"></input>
-      <br><input type="text" style="width:380px" readonly value="Địa điểm đến: ${
-        data.DiaDiem
       }"></input>
       <br><input type="text" style="width:380px" readonly value="Ghi chú: ${
         data.GhiChu
