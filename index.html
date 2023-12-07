@@ -78,15 +78,15 @@
             <input id="iddenngay" class="nhaplieu" type="date"></input> -->
           </div>
           <div style="padding-left:15px;text-align:right">
-            <label for="idgiora">Giờ ra:</label>
+            <label for="idgiora">Giờ:</label>
             <input id="idgiora" class="nhaplieu" type="time" value="08:00" ></input>
             <!-- <br><label for="iddenthgian">Giờ ra:</label>
             <input id="iddenthgian" class="nhaplieu" type="time" value="17:00" ></input> -->
           </div>
         </div>        
         <div style="padding-top:10px">
-          <label for="idnguoimang">Người mang ra:</label>
-          <input id="idnguoimang" class="nhaplieu" type="text" style="width:280px" placeholder="Họ tên"></input>
+          <label for="idnguoimang">Người mang ra/vào:</label>
+          <input id="idnguoimang" class="nhaplieu" type="text" style="width:260px" placeholder="Họ tên"></input>
           <br>
           <label for="idmucdich">Mục đích:</label>
           <input id="idmucdich" class="nhaplieu" type="text" style="width:317px;margin-top: 3px" placeholder="lý do"></input>
@@ -94,8 +94,8 @@
           <label for="idphuongtien">Phương tiện:</label>
           <input id="idphuongtien" class="nhaplieu" type="text" style="width:298px;margin-top: 3px" placeholder="Loại xe - biển số"></input>
           <br>
-          <label for="iddiadiem">Địa điểm đến:</label>
-          <input id="iddiadiem" class="nhaplieu" type="text" style="width:292px;margin-top: 3px" placeholder="Địa điểm"></input>
+          <label for="iddiadiem">Địa điểm:</label>
+          <input id="iddiadiem" class="nhaplieu" type="text" style="width:320px;margin-top: 3px" placeholder="Địa điểm"></input>
           <br>
           <label for="idghichu">Ghi chú:</label>
           <input id="idghichu" class="nhaplieu" type="text" style="width:326px;margin-top: 3px" placeholder="Lưu ý"></input>
@@ -105,7 +105,11 @@
             <option value="">- Chọn quản lý xác nhận -</option>
           </select>
         </div>
-      <div style="text-align:right;margin-right: 20px"><button id="btnguidk" type="submit" style="width:140px">Gửi đăng ký</button></div>
+      <div style="text-align:right;margin-right: 20px">
+        <button id="btnguidk" type="submit" style="width:140px">Đăng ký ra</button>
+        <button id="btnmangvao" type="submit" style="width:140px">Mang vào</button>
+      </div>
+
       </form>
 
     </section>
@@ -129,7 +133,7 @@
               font-family: Arial, Helvetica, sans-serif;
               font-size: 20px;
               text-align: center;
-            ">MANG VẬT TƯ, TÀI SẢN RA NGOÀI</h2>
+            ">MANG VẬT TƯ, TÀI SẢN RA / VÀO CÔNG TY</h2>
             <div>
                 <label class="noteDate" style="font-size:13px;margin-left: 133px;color:gray">Nhập ngày đăng ký</label><br />
                 <div id="formtra" style="display:flex; width: 377;font-size: 16px">
@@ -138,11 +142,12 @@
                     type="text"
                     id="matracuu"
                     placeholder="Mã nhân viên"
-                    size="11"
+                    size="7"
                     height="50px"
                   />
                   <input type="date" id="ngaytracuu" class="nhaplieu" />
-                  <button id="btnkiemtra" Style="width:90px;height: 28px;margin-left: 5px;font-size: 15px">Kiểm tra</button><br />
+                  <button id="btnkiemtra" Style="width:75px;height: 28px;margin-left: 5px;font-size: 15px">Mang ra</button><br />
+                  <button id="btnktravao" Style="width:85px;height: 28px;margin-left: 5px;font-size: 15px">Mang vào</button><br />
                 </div>
             </div>
               <!-- <p>trả ra kết quả đăng ký</p> -->
@@ -167,7 +172,7 @@
                     <input class="nhaplieu" type="date"  readonly></input>
                   </div>
                   <div style="padding-left:15px;text-align:right">
-                    <label>Giờ ra:</label>
+                    <label>Giờ:</label>
                     <input class="nhaplieu" type="time" readonly ></input>
                   </div>
                 </div>
