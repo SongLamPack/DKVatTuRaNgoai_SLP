@@ -48,7 +48,7 @@ input[type="radio"] {
   width: 120px;
 }
 
-#btnguidk {
+#btnguidk, #btnmangvao {
   font-family: "Times New Roman", Times, serif;
   width: 120px;
   height: 35px;
